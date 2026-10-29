@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SkyRush Arena — online-ready rocket arcade demo with virtual credits.">
+  <title>SkyRush Arena</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">✦</span><span>SKYRUSH <b>ARENA</b><small>ROCKET ARCADE</small></span></a>
+    <div class="top-right"><span class="demo-pill">● VIRTUAL MODE</span><button id="authOpen" class="outline-btn">Sign in</button><button id="profileBtn" class="profile-btn hidden">My profile</button></div>
+  </header>
+
+  <section id="authPanel" class="auth-panel hidden">
+    <div class="auth-head"><div><p class="eyebrow">PLAYER ACCESS</p><h2 id="authTitle">Create your account</h2><p class="muted">Use a demo account on this device. This starter version does not use a remote server.</p></div><button id="authClose" class="close-btn" aria-label="Close sign in">×</button></div>
+    <div class="auth-tabs"><button id="tabSignup" class="active">Sign up</button><button id="tabLogin">Sign in</button></div>
+    <form id="authForm">
+      <label for="username">Player name</label><input id="username" autocomplete="nickname" minlength="2" maxlength="24" placeholder="Your player name" required>
+      <label for="email">Email</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+      <label for="password">Password</label><input id="password" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required>
+      <p class="form-note">Demo only: account details stay in this browser. Do not use a real password.</p>
+      <button class="primary-btn full" type="submit" id="authSubmit">Create demo account</button>
+      <p id="authMessage" class="form-message" role="status"></p>
+    </form>
+  </section>
+
+  <section class="hero">
+    <div><p class="eyebrow">ARCADE FLIGHT SYSTEM / 001</p><h1>Reach for the <em>sky.</em></h1><p class="subtitle">Launch your rocket, watch the multiplier climb, and collect virtual credits before the flight ends.</p></div>
+    <div class="wallet"><span>VIRTUAL WALLET <b>◈</b></span><strong id="balance">1,000</strong><small>Practice credits only <button id="resetBtn">Reset ↺</button></small></div>
+  </section>
+
+  <main class="layout">
+    <section class="game-card">
+      <div class="game-head"><div><small>FLIGHT DISPLAY</small><b id="roundLabel">ROUND #001</b></div><span id="statusPill" class="status ready">● <span id="statusText">SYSTEM READY</span></span></div>
+      <div id="sky" class="sky">
+        <div class="planet"></div><div class="stars"></div><div class="multiplier-area"><strong id="multiplier">1.00<span>×</span></strong><small id="flightMessage">YOUR NEXT FLIGHT AWAITS</small></div>
+        <div id="rocketWrap"><div class="flame"></div><svg viewBox="0 0 100 150" aria-label="Rocket"><path d="M50 5C28 27 25 52 27 83L15 107 34 101 39 126 50 117 61 126 66 101 85 107 73 83C75 52 72 27 50 5Z" fill="#c5eaff" stroke="#fff" stroke-width="3"/><path d="M50 18C40 33 40 46 40 57H60C60 46 60 33 50 18Z" fill="#7583ff"/><circle cx="50" cy="70" r="11" fill="#203d7c" stroke="#62e8ff" stroke-width="4"/></svg></div>
+        <div class="altitude">↑ <span id="altitude">0 m<small>ALTITUDE</small></span></div><div class="sky-foot"><span>● FLIGHT SIMULATION</span><span id="flightStatus">ON STANDBY</span></div>
+      </div>
+      <div class="controls">
+        <div><label for="betAmount">VIRTUAL CREDITS</label><div class="bet-row"><button id="minusBet" aria-label="Decrease credits">−</button><input id="betAmount" type="number" min="10" max="1000" step="10" value="50"><button id="plusBet" aria-label="Increase credits">+</button></div><div class="quick-bets"><button data-bet="50" class="selected">50</button><button data-bet="100">100</button><button data-bet="250">250</button><button data-bet="500">500</button></div></div>
+        <div><div class="potential"><span>COLLECT VALUE</span><b id="potentialScore">50</b></div><button id="launchBtn" class="launch-btn">↗ LAUNCH ROCKET</button><p id="hint">Choose virtual credits and launch.</p></div>
+      </div>
+    </section>
+
+    <aside class="side">
+      <section class="side-card"><h2>PLAYER PROFILE <i>✧</i></h2><div class="profile-line"><div id="avatar" class="avatar">G</div><div><strong id="playerName">Guest Player</strong><small id="playerEmail">Sign in to create a local profile</small></div></div><div class="stat"><span>Best multiplier</span><b id="bestMultiplier">1.00×</b></div><div class="stat"><span>Flights played</span><b id="flightsPlayed">0</b></div><div class="stat"><span>Credits collected</span><b id="coinsCollected">0</b></div><p class="note">Your local demo stats are saved in this browser.</p></section>
+      <section class="side-card"><h2>HOW TO PLAY <i>⌁</i></h2><div class="step"><b>01</b><div><strong>Set credits</strong><small>Choose a virtual amount.</small></div></div><div class="step"><b>02</b><div><strong>Launch</strong><small>Watch the multiplier rise.</small></div></div><div class="step"><b>03</b><div><strong>Collect</strong><small>Collect before the flight ends.</small></div></div></section>
+      <section class="promo"><b>✦ COSMETIC UPGRADES</b><p>Rocket skins, themes, leaderboards and cloud accounts can be added as future features.</p></section>
+    </aside>
+  </main>
+
+  <section class="history-card"><div class="history-head"><h2>RECENT FLIGHTS</h2><button id="clearHistory" class="outline-btn">Clear history</button></div><div id="historyList" class="history-list"><p class="empty">Your recent flights will appear here.</p></div></section>
+  <p class="disclaimer">SkyRush Arena is a virtual-credit arcade demo. No real-money deposits, cash-outs, betting, or prizes. This starter project uses browser storage, not a secure online account server.</p>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <footer><span>© 2026 SKYRUSH ARENA</span><span>ROCKET ARCADE · VIRTUAL CREDITS ONLY</span></footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
